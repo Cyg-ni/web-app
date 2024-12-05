@@ -4,13 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game Account Management</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-200">
   <div class="container">
-    <h1>Game Account Management</h1>
 
-    <!-- Form to add a new user -->
+    <div class="bg-zinc-700 max-w-xl flex items-center justify-center w-full mx-auto relative items-center rounded-md">
+      <h1 class="text-white text-2xl font-semibold text-center" >Game Account Management</h1>
+    </div>
+
+
+    <div class="p-4 mx-auto rounded-m max-w-xl justify-center items-center">
+       <!-- Form to add a new user -->
     <form id="userForm">
       <label for="name">Username:</label>
       <input type="text" id="username" required>
@@ -20,31 +25,34 @@
 
       <label for="creationDate">Date Joined:</label>
       <input type="date" id="creationDate"> 
-
-      <button type="submit">Add User</button>
     </form>
-
-    <button> Update </button>
-    <button> Delete </button>
-
-    <!-- Display the list of users -->
-    <h2>Current Game Accounts</h2>
-    <table id="usersTable">
-      <thead>
-        <tr>
-          <th>Account ID</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Date Joined</th>
-        </tr>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- User rows will be dynamically added here -->
-      </tbody>
-    </table>
   </div>
+</div>
 
-  <script src="/js/app.js"></script>
+<div class="text-white bg-zinc-600 text-2xl font-semibold text-center">
+  <!-- Display the list of users -->
+  <h2>Current Game Accounts</h2>
+</div>
+
+
+<div class="bg-white">
+  <table class="table-auto min-w-full p-4 border-spacing-2 border border-separate id="usersTable">
+    <thead class="rounded-md text-white text-lg ">
+      <tr class="text-white bg-zinc-600 text-2xl font-semibold text-center">
+        <th class="rounded-md bg-slate-900 px-4 ">Account ID</th>
+        <th class="rounded-md bg-slate-900 px-4 ">Username</th>
+        <th class="rounded-md bg-slate-900 px-4 ">Email</th>
+        <th class="rounded-md bg-slate-900 px-4 ">Date Joined</th>
+      </tr>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- User rows will be dynamically added here -->
+    </tbody>
+  </table>
+
+</div>
+
+<script src="/js/app.js"></script>
 </body>
 </html>
