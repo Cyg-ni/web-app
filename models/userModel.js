@@ -44,6 +44,8 @@ exports.getAllUsers = (callback) => {
 };
 
 
+
+
 exports.addUser = (username, email, callback) => {
   const creationDate = new Date().toISOString(); // Get the current timestamp
   const stmt = db.prepare('INSERT INTO users (username, email, creationDate) VALUES (?, ?, ?)');
@@ -54,4 +56,26 @@ exports.addUser = (username, email, callback) => {
     callback(null, { id: this.lastID, username, email });
   });
   stmt.finalize();
+};
+
+exports.deleteUser = (accountId, callback) => {
+  const sql = 'DELETE FROM users WHERE accountId = ?';
+
+  db.run(sql, [accountId], function(err) {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, { deletedId: accountId });
+  });
+};
+
+exports.updateUser = (accountId, username, email, callback) => {
+  const sql = 'UPDATE users SET username = ?, email = ? WHERE accountId = ?';
+
+  db.run(sql, [username, email, accountId], function(err) {
+    if (err) {
+      return callback(err);
+    }
+    callback(null, { updatedId: accountId, username, email });
+  });
 };

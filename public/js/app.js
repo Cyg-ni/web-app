@@ -18,11 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${user.username}</td>   
             <td>${user.email}</td>
             <td>${new Date(user.creationDate).toLocaleString()}</td>
+            <td>
+              <button onclick="updateUser(${user.accountId})">Update</button>
+              <button onclick="deleteUser(${user.accountId})">Delete</button>
+            </td>            
           `;
         });
       })
       .catch(error => console.error('Error fetching users:', error));
   }
+
+
+  
 
   // Add user via form submission
   userForm.addEventListener('submit', function(event) {
@@ -30,6 +37,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const username = document.getElementById('username').value;  
     const email = document.getElementById('email').value;
+
+  // Function to delete a user
+  function deleteUser(accountId) {
+  fetch(`/users/${accountId}`, {
+    method: 'DELETE',
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('User deleted:', data);
+      fetchUsers(); // Refresh the user list after deletion
+    })
+    .catch(error => console.error('Error deleting user:', error));
+}
+
+// Function to update a user
+function updateUser(accountId) {
+  const username = prompt("Enter new username:");
+  const email = prompt("Enter new email:");
+
+  fetch(`/users/${accountId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ username, email }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('User updated:', data);
+      fetchUsers(); // Refresh the user list after update
+    })
+    .catch(error => console.error('Error updating user:', error));
+}
+
+
+    
 
     // Send POST request to add a new user
     fetch('/users', {
