@@ -45,8 +45,9 @@ exports.getAllUsers = (callback) => {
 
 
 exports.addUser = (username, email, callback) => {
-  const stmt = db.prepare('INSERT INTO users (username, email) VALUES (?, ?)');
-  stmt.run([username, email], function (err) {
+  const creationDate = new Date().toISOString(); // Get the current timestamp
+  const stmt = db.prepare('INSERT INTO users (username, email, creationDate) VALUES (?, ?, ?)');
+  stmt.run([username, email, creationDate], function (err) {
     if (err) {
       return callback(err);
     }

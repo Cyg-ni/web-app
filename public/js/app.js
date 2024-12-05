@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${user.accountId}</td>   
             <td>${user.username}</td>   
             <td>${user.email}</td>
+            <td>${new Date(user.creationDate).toLocaleString()}</td>
           `;
         });
       })
