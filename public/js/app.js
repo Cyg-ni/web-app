@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         users.forEach(user => {
           const row = usersTable.insertRow();
           row.innerHTML = `
-            <td>${user.id}</td>
-            <td>${user.name}</td>
+            <td>${user.accountId}</td>   
+            <td>${user.username}</td>   
             <td>${user.email}</td>
           `;
         });
@@ -27,14 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
   userForm.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent page reload
 
-    const name = document.getElementById('name').value;
+    const username = document.getElementById('username').value;  
     const email = document.getElementById('email').value;
 
     // Send POST request to add a new user
     fetch('/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email })
+      body: JSON.stringify({ username, email })  
     })
       .then(response => response.json())
       .then(user => {

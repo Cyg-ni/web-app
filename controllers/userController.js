@@ -12,8 +12,8 @@ exports.getAllUsers = (req, res) => {
 
 // Add a new user to the database
 exports.addUser = (req, res) => {
-  const { name, email } = req.body;
-  userModel.addUser(name, email, (err, user) => {
+  const { username, email } = req.body;
+  userModel.addUser(username, email, (err, user) => {
     if (err) {
       return res.status(500).send(err.message);
     }
